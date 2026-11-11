@@ -1,0 +1,52 @@
+{
+  "name": "@whyself/ttds",
+  "version": "0.1.0",
+  "description": "面向实时语音对话交互（Talk to DeepSeek）的 DSH 插件包。",
+  "type": "module",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./package.json": "./package.json",
+    "./cordis.patch.yml": "./cordis.patch.yml"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "engines": {
+    "dsh": ">=0.2.2-alpha.3 <0.3.0-0",
+    "node": "^22.19.0 || >=24.0.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepack": "pnpm run build"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.6-alpha.2"
+  },
+  "devDependencies": {
+    "@deepseek-ai/cordis": "4.0.6-alpha.2"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "ttds",
+    "realtime-voice"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whyself/ttds.git",
+    "directory": "packages/ttds"
+  }
+}

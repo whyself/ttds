@@ -1,0 +1,9 @@
+node_modules/
+/.cordis/
+/lab/
+/qwen_realtime_lab/
+/half_duplex_bench/
+/packages/*/lib/
+*.tgz
+*.tsbuildinfo
+.env
