@@ -44,6 +44,13 @@ jobs:
           test "$actual" = "$version" || { echo "::error::tag version $version != package.json version $actual"; exit 1; }
           test "$(node -p "require('./packages/$dir/package.json').private === true")" = false || { echo "::error::packages/$dir is private and is never published"; exit 1; }
           echo "dir=$dir" >> "$GITHUB_OUTPUT"
+          dist_tag=""
+          if [[ "$version" == *-* ]]; then
+            prerelease="${version#*-}"
+            dist_tag="${prerelease%%.*}"
+            [[ "$dist_tag" =~ ^[0-9]+$ ]] && dist_tag="next"
+          fi
+          echo "dist_tag=$dist_tag" >> "$GITHUB_OUTPUT"
       - run: pnpm install --frozen-lockfile
       - run: pnpm run lint
       - run: pnpm run typecheck
@@ -54,10 +61,15 @@ jobs:
         working-directory: packages/${{ steps.pkg.outputs.dir }}
         env:
           NPM_STAGE: ${{ inputs.stage || false }}
+          DIST_TAG: ${{ steps.pkg.outputs.dist_tag }}
         run: |
+          tag_args=()
+          if [ -n "$DIST_TAG" ]; then
+            tag_args=(--tag "$DIST_TAG")
+          fi
           if [ "$NPM_STAGE" = true ]; then
             npm install --global npm@11.21.0
-            npm stage publish package.tgz --access public --provenance
+            npm stage publish package.tgz --access public --provenance "${tag_args[@]}"
           else
-            npm publish package.tgz --access public --provenance
+            npm publish package.tgz --access public --provenance "${tag_args[@]}"
           fi
