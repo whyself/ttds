@@ -2,6 +2,7 @@
   "name": "@whyself/ttds",
   "version": "0.1.0",
   "description": "面向实时语音对话交互（Talk to DeepSeek）的 DSH 插件包。",
+  "icon": "./icon.png",
   "type": "module",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -10,16 +11,46 @@
       "types": "./lib/index.d.ts",
       "default": "./lib/index.js"
     },
+    "./client": {
+      "types": "./lib/client/index.d.ts",
+      "node": "./lib/client/index.js",
+      "browser": "./lib/client.browser.js",
+      "default": "./lib/client.browser.js"
+    },
     "./package.json": "./package.json",
-    "./cordis.patch.yml": "./cordis.patch.yml"
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./locale/*.json": "./locale/*.json"
   },
   "files": [
+    "icon.png",
+    "docs",
+    "locale/*.json",
     "lib",
     "cordis.patch.yml"
   ],
   "dsh": {
     "bundle": {
       "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-connection",
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-renderer",
+        "@deepseek-ai/dsh-client-ui-layout",
+        "@deepseek-ai/dsh-client-ui-sidebar",
+        "@deepseek-ai/dsh-client-ui-plugin-manager",
+        "@deepseek-ai/dsh-client-ui-settings"
+      ],
+      "external": [
+        "@deepseek-ai/dsh-client-connection/client",
+        "@deepseek-ai/dsh-client-locale/client",
+        "@deepseek-ai/dsh-client-ui-layout/client",
+        "@deepseek-ai/dsh-client-ui-sidebar/client",
+        "@deepseek-ai/dsh-client-ui-plugin-manager/client",
+        "@deepseek-ai/dsh-client-ui-settings/client"
+      ]
     }
   },
   "engines": {
@@ -27,14 +58,44 @@
     "node": "^22.19.0 || >=24.0.0"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.json && node scripts/build-client.mjs",
     "prepack": "pnpm run build"
+  },
+  "dependencies": {
+    "@deepseek-ai/schemastery": "^3.18.6-alpha.2",
+    "clsx": "^2.1.1",
+    "ws": "^8.18.0"
   },
   "peerDependencies": {
     "@deepseek-ai/cordis": "^4.0.6-alpha.2"
   },
   "devDependencies": {
-    "@deepseek-ai/cordis": "4.0.6-alpha.2"
+    "@deepseek-ai/cordis": "4.0.6-alpha.2",
+    "@deepseek-ai/dsh-agent": "0.2.2-alpha.3",
+    "@deepseek-ai/dsh-api-remotes": "0.2.2-alpha.3",
+    "@deepseek-ai/dsh-api-session-controller": "0.2.2-alpha.3",
+    "@deepseek-ai/dsh-client-connection": "0.2.2-alpha.3",
+    "@deepseek-ai/dsh-client-locale": "0.2.2-alpha.3",
+    "@deepseek-ai/dsh-client-store": "0.2.2-alpha.3",
+    "@deepseek-ai/dsh-client-ui-layout": "0.2.2-alpha.3",
+    "@deepseek-ai/dsh-client-ui-plugin-manager": "0.2.2-alpha.3",
+    "@deepseek-ai/dsh-client-ui-primitives": "0.2.2-alpha.3",
+    "@deepseek-ai/dsh-client-ui-renderer": "0.2.2-alpha.3",
+    "@deepseek-ai/dsh-client-ui-settings": "0.2.2-alpha.3",
+    "@deepseek-ai/dsh-client-ui-sidebar": "0.2.2-alpha.3",
+    "@deepseek-ai/dsh-client-ui-slots": "0.2.2-alpha.3",
+    "@deepseek-ai/dsh-host-webserver": "0.2.2-alpha.3",
+    "@deepseek-ai/dsh-scope": "0.2.2-alpha.3",
+    "@deepseek-ai/dsh-session": "0.2.2-alpha.3",
+    "@deepseek-ai/dsh-typert-protocol": "0.2.2-alpha.3",
+    "@deepseek-ai/dsh-web": "0.2.2-alpha.3",
+    "@testing-library/react": "^16.3.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "@types/ws": "^8.18.0",
+    "esbuild": "^0.25.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "keywords": [
     "dsh",

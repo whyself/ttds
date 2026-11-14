@@ -1,0 +1,207 @@
+.orbContainer {
+  position: fixed;
+  left: var(--ttds-x);
+  top: var(--ttds-y);
+  z-index: 30;
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  color: var(--dsw-alias-label-primary);
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pillSurface {
+  width: 44px;
+  height: 44px;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  border: 0;
+  border-radius: 999px;
+  corner-shape: round;
+  background: var(--dsw-specific-menu, var(--dsw-alias-bg-layer-2));
+  backdrop-filter: var(--dsw-menu-backdrop-filter, none);
+  box-shadow: var(--dsw-elevation-prominent);
+  transition: width 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pillExpanded {
+  width: 162px;
+}
+
+.expanded {
+  z-index: 32;
+}
+
+.handle {
+  border: 0;
+  padding: 0;
+  width: 44px;
+  height: 44px;
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  background: transparent;
+  border-radius: 50%;
+  corner-shape: round;
+  cursor: grab;
+  touch-action: none;
+}
+
+.handle:active {
+  cursor: grabbing;
+}
+
+.handle:focus-visible {
+  outline: 2px solid var(--dsw-alias-state-business-primary);
+  outline-offset: -3px;
+}
+
+.actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding-inline: 8px 10px;
+  flex-shrink: 0;
+}
+
+.iconAction {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  corner-shape: round;
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  background: var(--dsw-alias-bg-module-platform);
+  color: var(--dsw-alias-label-primary);
+  cursor: pointer;
+  transition: background-color 140ms ease, color 140ms ease;
+}
+
+.iconAction:hover {
+  background: var(--dsw-alias-interactive-bg-hover);
+}
+
+.iconAction:focus-visible {
+  outline: 2px solid var(--dsw-alias-state-business-primary);
+  outline-offset: 2px;
+}
+
+.iconActionMuted {
+  color: var(--dsw-alias-label-secondary);
+}
+
+.hangupAction {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  corner-shape: round;
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  background: color-mix(in srgb, var(--dsw-alias-state-error-primary) 12%, transparent);
+  color: var(--dsw-alias-state-error-primary);
+  cursor: pointer;
+  transition: background-color 140ms ease;
+}
+
+.hangupAction:hover {
+  background: color-mix(in srgb, var(--dsw-alias-state-error-primary) 20%, transparent);
+}
+
+.hangupAction:focus-visible {
+  outline: 2px solid var(--dsw-alias-state-error-primary);
+  outline-offset: 2px;
+}
+
+.orbContainer[data-docked="left"] {
+  transform: translateX(-50%);
+}
+
+.orbContainer[data-docked="left"]:hover,
+.orbContainer[data-docked="left"]:focus-within {
+  transform: translateX(-32%);
+}
+
+.orbContainer[data-docked="right"] {
+  transform: translateX(50%);
+}
+
+.orbContainer[data-docked="right"]:hover,
+.orbContainer[data-docked="right"]:focus-within {
+  transform: translateX(32%);
+}
+
+.orbContainer[data-docked="top"] {
+  transform: translateY(-50%);
+}
+
+.orbContainer[data-docked="top"]:hover,
+.orbContainer[data-docked="top"]:focus-within {
+  transform: translateY(-32%);
+}
+
+.confirmPopover {
+  position: absolute;
+  width: 268px;
+  padding: 12px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 0;
+  border-radius: var(--dsw-radius-xl);
+  background: var(--dsw-specific-menu, var(--dsw-alias-bg-layer-2));
+  backdrop-filter: var(--dsw-menu-backdrop-filter, none);
+  box-shadow: var(--dsw-elevation-panel);
+}
+
+.popoverBelow {
+  top: calc(100% + 10px);
+}
+
+.popoverAbove {
+  bottom: calc(100% + 10px);
+}
+
+.popoverRight {
+  right: 0;
+}
+
+.popoverLeft {
+  left: 0;
+}
+
+.confirmText {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 18px;
+  color: var(--dsw-alias-label-primary);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.confirmButtons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbContainer,
+  .pillSurface,
+  .iconAction,
+  .hangupAction {
+    transition: none;
+  }
+}

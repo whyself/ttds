@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "Talk to DeepSeek（实时语音）",
+    "description": "面向 DSH 的拟人化全双工实时语音监督插件，支持后台会话巡检、任务派发与事件播报。",
+    "detail": "docs/DETAIL.zh.md"
+  }
+}

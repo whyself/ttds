@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "Talk to DeepSeek (Realtime Voice)",
+    "description": "Full-duplex realtime voice supervisor for DSH with background session inspection, task dispatch, and event hooks.",
+    "detail": "docs/DETAIL.zh.md"
+  }
+}

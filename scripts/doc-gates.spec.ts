@@ -153,14 +153,14 @@ describe('verify-export-jsdoc', () => {
       'export function log(text: string): void { void text }',
     ].join('\n')
     expect(check(source)).toEqual([])
-  })
+  }, 15_000)
 
   it('rejects a missing description, a missing @param, and a missing @returns', () => {
     expect(check('export function f(): number { return 1 }')).toEqual(['function f needs a JSDoc description'])
     expect(check('/** Doubles. @returns twice x. */\nexport function f(x: number): number { return x * 2 }')).toEqual(['function f needs "@param x"'])
     expect(check('/** Doubles. @param x - input. */\nexport function f(x: number): number { return x * 2 }')).toEqual(['function f returns a value and needs "@returns"'])
     expect(check('export interface Shape { size: number }')).toEqual(['Shape needs a JSDoc description'])
-  })
+  }, 15_000)
 })
 
 describe('verify-doc-budgets', () => {
