@@ -1,6 +1,6 @@
 {
   "name": "@whyself/ttds",
-  "version": "0.1.0",
+  "version": "0.1.0-alpha.1",
   "description": "面向实时语音对话交互（Talk to DeepSeek）的 DSH 插件包。",
   "icon": "./icon.png",
   "type": "module",
