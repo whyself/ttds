@@ -243,9 +243,44 @@ describe('plugin settings drafts', () => {
     const fixture = clientFixture()
     const resolved = resolveTtdsConfig({}, {})
     const { apiKey: _stripped, ...qwenWithoutKey } = resolved.providers['qwen-realtime']
-    const redactedValue: Record<string, unknown> = {
-      ...resolved,
-      providers: { 'qwen-realtime': qwenWithoutKey },
+    const redactedValue = {
+      provider: resolved.provider,
+      storageDir: resolved.storageDir,
+      providers: {
+        'qwen-realtime': {
+          hasApiKey: qwenWithoutKey.hasApiKey,
+          apiKeySource: qwenWithoutKey.apiKeySource,
+          workspaceId: qwenWithoutKey.workspaceId,
+          endpointUrl: qwenWithoutKey.endpointUrl,
+          model: qwenWithoutKey.model,
+          voice: qwenWithoutKey.voice,
+          maxHistoryTurns: qwenWithoutKey.maxHistoryTurns,
+          enableSearch: qwenWithoutKey.enableSearch,
+        },
+      },
+      voice: {
+        turnDetection: resolved.voice.turnDetection,
+        threshold: resolved.voice.threshold,
+        silenceDurationMs: resolved.voice.silenceDurationMs,
+        customInstructions: resolved.voice.customInstructions,
+        inputDeviceId: resolved.voice.inputDeviceId,
+        outputDeviceId: resolved.voice.outputDeviceId,
+        startMuted: resolved.voice.startMuted,
+      },
+      tools: {
+        enableReadTools: resolved.tools.enableReadTools,
+        enableSearchTool: resolved.tools.enableSearchTool,
+        writeConfirmation: resolved.tools.writeConfirmation,
+        toolTimeoutMs: resolved.tools.toolTimeoutMs,
+      },
+      hooks: {
+        quietGraceMs: resolved.hooks.quietGraceMs,
+        onTurnSettled: resolved.hooks.onTurnSettled,
+        onToolApproval: resolved.hooks.onToolApproval,
+        onAgentError: resolved.hooks.onAgentError,
+        onShellExitError: resolved.hooks.onShellExitError,
+        onSubagentSettled: resolved.hooks.onSubagentSettled,
+      },
     }
     const formSnap: ConfigFormSnapshot<Record<string, unknown>> = {
       status: 'ready',

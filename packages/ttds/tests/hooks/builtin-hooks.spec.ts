@@ -1,3 +1,5 @@
+import { tmpdir } from 'node:os'
+import { resolve } from 'node:path'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { SessionSeq, type Session, type ToolResultMessage } from '@deepseek-ai/dsh-session'
 import { createFixture, event, toolReady } from './fixture.ts'
@@ -142,7 +144,7 @@ describe('built-in public event subscriptions', () => {
   it('captures ask_user_question tool calls and formats readable workspace and session title labels', () => {
     const session = fixture.ctx.sessions.create(
       'session-5d6f71a9-cb8d-4c92-8d20-c76339e7357c' as Session['id'],
-      { meta: { cwd: 'C:\\Users\\demo\\default-workspace' } },
+      { meta: { cwd: resolve(tmpdir(), 'default-workspace') } },
     )
     appendCustom(
       session,
