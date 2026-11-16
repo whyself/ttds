@@ -112,7 +112,7 @@ dsh --profile verify --dump-config
 
 - [packages/ttds/README.md](packages/ttds/README.md)：`@whyself/ttds` 安装配置表、桥接工具细则、模型体验（Prompt/Token/KV Cache 审计）与已知限制。
 - [AGENTS.md](AGENTS.md) 与 [docs/AGENTS.md](docs/AGENTS.md)：插件解耦边界、编码要求与文档分层规范。
-- [.agents/notes/README.md](.agents/notes/README.md)：设计提案与架构决策记录（含[总体设计理念](.agents/notes/proposed/architecture/2026-11-11-design-philosophy.md)、[语音运行时与适配器](.agents/notes/proposed/architecture/2026-11-11-voice-runtime-adapter.md)、[语音工具注册表](.agents/notes/proposed/architecture/2026-11-11-voice-tool-registry.md)、[事件钩子引擎](.agents/notes/proposed/architecture/2026-11-11-event-hook-engine.md)与[客户端舞台设计](.agents/notes/proposed/architecture/2026-11-11-client-ui-stage.md)）。
+- [.agents/notes/README.md](.agents/notes/README.md)：架构决策记录规范与已落地决策文档（含[总体设计理念](.agents/notes/implemented/architecture/2026-11-11-design-philosophy.md)、[语音运行时与适配器](.agents/notes/implemented/architecture/2026-11-11-voice-runtime-adapter.md)、[语音工具注册表](.agents/notes/implemented/architecture/2026-11-11-voice-tool-registry.md)、[事件钩子引擎](.agents/notes/implemented/architecture/2026-11-11-event-hook-engine.md)与[客户端舞台设计](.agents/notes/implemented/architecture/2026-11-11-client-ui-stage.md)）。
 - 致谢 [DeepSeek Harness（DSH）](https://github.com/deepseek-ai/deepseek-harness) 提供的插件化运行时与界面插槽体系，以及阿里云百炼 Qwen-Audio Realtime 实时语音模型服务。
 
 ## License
